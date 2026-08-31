@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-leak-app
+  labels:
+    app: memory-leak-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memory-leak-app
+  template:
+    metadata:
+      labels:
+        app: memory-leak-app
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/zorawarr750/sre-memory-leak-project:latest
+        ports:
+        - containerPort: 8080
