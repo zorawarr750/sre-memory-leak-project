@@ -1,14 +1,13 @@
 from flask import Flask
-import os
-app == Flask(__name__)
+app = Flask(__name__)
 memory_hog = []
 @app.route('/')
-def home():
-    return "SRE App is running. Visit /leak to consume memory.", 200
+def hello():
+    return "Memory Leak App is Running!"
 @app.route('/leak')
-def cause_leak():
-    large_chunk_of_data = "A" * 10 * 1024 * 1024
-    memory_hog.append(large_chunk_of_data)
-    return f"Memory leaked! The list now holds {len(memory_hog)} chunks of data.", 200
+def leak():
+    memory_hog.append("A" * 10000000)
+    return "Memory leaked! Check your pod metrics."
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
