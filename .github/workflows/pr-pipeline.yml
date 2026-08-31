@@ -1,8 +1,9 @@
 name: Security & Testing Pipeline
 on:
   pull_request:
-    branches: [ "main" ]
-
+  push:
+    branches:
+      - main
 jobs:
   security-scans:
     runs-on: ubuntu-latest
